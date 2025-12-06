@@ -4,7 +4,7 @@
 
 スマホ使用時にTwitter(現X)の共有機能のリンクをDiscordに貼るのをラクにするためのWebアプリです。ついでにYouTubeのリンクにも対応させました。
 
-無駄にGitHub Actionsでhtmlのサイズを最小化させています。
+無駄にGitHub Actionsでhtmlのサイズを最小化させています。2.9KB -> 1.8KBになりました。[wilsonzlin/minify-html](https://github.com/wilsonzlin/minify-html)をお借りしています。
 
 ## 機能 / feature
 - TwitterとXのリンクは、fxtwitter.comとfixupx.comに変換してクエリを削除します。
