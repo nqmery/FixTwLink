@@ -24,23 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: move to publish dir
-        run: mkdir publish && mv *html publish/
-      - name: HTMLMinifier
-        # You may pin to the exact commit or the version.
-        # uses: emepetres/html-minifier-action@3212e848160959942d14de2e02b4e72632586714
-        uses: emepetres/html-minifier-action@v1
-        with:
-        # Path to root directory containing HTML files
-          rootDir: "publish"
-          # Prints minification details
-          verbose: true
-          # Minify CSS
-          minifyCSS: true # optional, default is true
-          # Minify JS
-          minifyJS: true # optional, default is true
-          # Additional flags to pass to HTMLMinifier, separted by comma. See https://github.com/kangax/html-minifier#options-quick-reference. Use ! to indicate false value of a flag.
-          flags: "caseSensitive, collapseBooleanAttributes, collapseInlineTagWhitespace, collapseWhitespace, decodeEntities, html5, minifyURLs, processConditionalComments, processScripts, removeAttributeQuotes, removeComments, removeOptionalTags, removeEmptyAttributes, removeEmptyElements, removeRedundantAttributes, removeRedundantAttributes, removeScriptTypeAttributes, removeStyleLinkTypeAttributes, removeTagWhitespace, sortAttributes, sortClassName useShortDoctype"
-          
+        run: mkdir publish # && mv *html publish/
+      - name: minify HTML
+        run: |
+          wget -O minhtml -q https://github.com/wilsonzlin/minify-html/releases/download/v0.18.1/minhtml-0.18.1-x86_64-unknown-linux-gnu && chmod +x minhtml && ./minhtml --do-not-minify-doctype --keep-spaces-between-attributes --ensure-spec-compliant-unquoted-attribute-values ./*.html publish/*.html
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
