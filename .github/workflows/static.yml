@@ -31,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Brotli compress the html, css and js files in repository
+        id: brotli
+        uses: charlesworth/compress-action@1.0
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
