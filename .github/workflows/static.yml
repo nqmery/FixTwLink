@@ -27,7 +27,7 @@ jobs:
         run: mkdir publish # && mv *html publish/
       - name: minify HTML
         run: |
-          wget -O minhtml -q https://github.com/wilsonzlin/minify-html/releases/download/v0.18.1/minhtml-0.18.1-x86_64-unknown-linux-gnu && chmod +x minhtml && ./minhtml publish/*.html *.html
+          wget -O minhtml -q https://github.com/wilsonzlin/minify-html/releases/download/v0.18.1/minhtml-0.18.1-x86_64-unknown-linux-gnu && chmod +x minhtml && ./minhtml *.html publish/*.html
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
