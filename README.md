@@ -1,4 +1,4 @@
-# Fix Twitter/X Link
+# [Fix Twitter/X Link](https://nqmery.github.io/FixTwLink/)
 
 自分用です。
 
