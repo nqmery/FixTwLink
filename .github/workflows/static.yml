@@ -23,6 +23,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - run: ls -R #debug 
       - name: compress-action
         uses: Charlesworth/compress-action@1.0.0
         with:
