@@ -28,7 +28,8 @@
             if(navigator.clipboard){
                 navigator.clipboard.readText().then((t) => {
                     document.getElementById('i').value = t;
-                    }).then(f());
+                    f(); // recompute output right after the paste
+                });
             }
         }
         function c(){
