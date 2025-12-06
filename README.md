@@ -1,4 +1,4 @@
-# [Fix Twitter/X Link](https://nqmery.github.io/FixTwLink/)
+# [Fix Twitter/X Link](https://app.nqme.net/FixTwLink/)
 
 自分用です。
 
