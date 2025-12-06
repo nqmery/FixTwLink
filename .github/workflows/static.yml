@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
       - run: ls -R #debug 
       - name: Compress assets
-        uses: Timmy/brotli-action@v1
+        uses: dave-mcconnell/brotli-action@v1
         with:
           args: '-Z *.html *.css *.js'
       - run: ls -R #debug
