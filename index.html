@@ -50,15 +50,14 @@
         It also removes unnecessary query parameters from YouTube links.
     </p>
 
-    <p><a style="color:#6666FF" href="https://github.com/nqmery/FixTwLink">Source Code</a></p>
+    <p><a style="color:#66F" href="https://github.com/nqmery/FixTwLink">Source Code</a></p>
 
     <script>
-        const i = document.getElementById('i'), e = document.getElementById('o');
-
-        onload=()=>{
-            i.value = '';
-            e.value = '';
-        };
+        const i = document.getElementById('i'),
+            e = document.getElementById('o'),
+            x = ['fxtwitter.com', 'fixupx.com', 'vxtwitter.com', 'fixvx.com', 'youtu.be'];
+            
+        onload=()=>{ i.value = e.value = '' };
 
         function p() {
             if (navigator.clipboard) {
@@ -73,21 +72,18 @@
             navigator.clipboard && navigator.clipboard.writeText(e.value);
         }
 
-        function f() {
-            const v = i.value;
-            if (v.includes('youtube.com')){
-                return o(v.replace(/\&.*$/g, ''))
-                };
-            if (v.includes('fxtwitter.com') || v.includes('fixupx.com') || v.includes('vxtwitter.com') || v.includes('fixvx.com') || v.includes('youtu.be')){
-                return o(v.replace(/\?.*$/g, ''))
-            };
-            if (v.match(/:\/\/(twitter\.com|x\.com)\/[^/]+\/status\/\d+/)) {
-                return o(v.replace(/:\/\/twitter\.com/g, '://fxtwitter.com')
-                .replace(/:\/\/x\.com/g, '://fixupx.com')
-                .replace(/\?.*$/g, ''));
+       function f() {
+                const v = i.value;
+                if (v.includes('youtube.com')) {
+                    return e.value = v.split('&')[0];
+                } 
+                if (x.some(d => v.includes(d))){
+                    return e.value = v.split('?')[0];
+                }
+                if (/:\/\/(twitter\.com|x\.com)\/[^/]+\/status\/\d+/.test(v)){
+                    return e.value = v.replace('://twitter.com', '://fxtwitter.com').replace('://x.com', '://fixupx.com').split('?')[0];
+                }
+                e.value = '?'; 
             }
-            o('?');
-        }
-        function o(s) { e.value = s; }
     </script>
 </body>
