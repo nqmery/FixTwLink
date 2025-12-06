@@ -27,7 +27,7 @@ jobs:
       - name: Compress assets
         uses: dave-mcconnell/brotli-action@v1
         with:
-          args: '-Z *.html *.css *.js'
+          args: '-Z *.html'
       - run: ls -R #debug
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4.0.0
