@@ -25,8 +25,22 @@ jobs:
         uses: actions/checkout@v4
       - name: move to publish dir
         run: mkdir publish && mv *html publish/
-      - name: debug publish dir
-        run: ls -la publish
+      - name: HTMLMinifier
+        # You may pin to the exact commit or the version.
+        # uses: emepetres/html-minifier-action@3212e848160959942d14de2e02b4e72632586714
+        uses: emepetres/html-minifier-action@v1
+        with:
+        # Path to root directory containing HTML files
+          rootDir: "publish"
+          # Prints minification details
+          verbose: true
+          # Minify CSS
+          minifyCSS: # optional, default is true
+          # Minify JS
+          minifyJS: # optional, default is true
+          # Additional flags to pass to HTMLMinifier, separted by comma. See https://github.com/kangax/html-minifier#options-quick-reference. Use ! to indicate false value of a flag.
+          flags: "caseSensitive, collapseBooleanAttributes, collapseInlineTagWhitespace, collapseWhitespace, decodeEntities, html5, minifyURLs, processConditionalComments, processScripts [\"application/ld+json\"], removeAttributeQuotes, removeComments, removeOptionalTags, removeEmptyAttributes, removeEmptyElements, removeRedundantAttributes, removeRedundantAttributes, removeScriptTypeAttributes, removeStyleLinkTypeAttributes, removeTagWhitespace, sortAttributes, sortClassName useShortDoctype"
+          
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:

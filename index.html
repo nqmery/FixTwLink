@@ -17,13 +17,12 @@
 </head>
 <body style="text-align:center;margin:1em;">
     <h1>Fix Twitter/X Link</h1>
-    <p><a href="https://twitter.com">Twitter</a> と <a href="https://x.com">X</a>のリンクを <a href="https://fxtwitter.com">fxtwitter.com</a>と <a href="https://fixupx.com">fixupx.com</a> に変換し、クエリを削除します。</p>
-    <p><button onclick="p()">貼り付け</button></p>
+    <p><button onclick="p()">Paste</button></p>
     <p><input type="text" id="i" onclick="p()" oninput="f()"></p>
     <p>↓↓↓↓↓</p>
     <p><input type="text" id="o" readonly></p>
-    <p><button onclick="c()">コピー</button></p>
-    <p><a href="https://github.com/nqmery/FixTwLink">ソースコード</a></p>
+    <p><button onclick="c()">Copy</button></p>
+    <p><a href="https://github.com/nqmery/FixTwLink">Usage & Source</a></p>
     <script>
         function p(){
             if(navigator.clipboard){
@@ -39,7 +38,7 @@
         }
         function f(){
             const i = document.getElementById('i').value;
-            if (i.includes('fxtwitter.com') || i.includes('fixupx.com') || i.includes('vxtwitter.com') || i.includes('fixvx.com')) {
+            if (i.includes('fxtwitter.com') || i.includes('fixupx.com') || i.includes('vxtwitter.com') || i.includes('fixvx.com')|| i.includes('youtube.com')|| i.includes('youtu.be')) {
                 o(i.replace(/\?.*$/g, ''));
             }else if (i.match(/:\/\/(twitter\.com|x\.com)\/[^/]+\/status\/\d+/)) {
                 o(i
