@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fix Twitter/X Link</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        button{
+            font-size: 4em;
+            align-items: center;
+            width: 100%;
+        }
+        input{
+            font-size: 2em;
+            width: 100%;
+        }
+    </style>
+</head>
+<body style="text-align:center;margin:1em;">
+    <h1>Fix Twitter/X Link</h1>
+    <p><a href="https://twitter.com">Twitter</a> と <a href="https://x.com">X</a>のリンクを <a href="https://fxtwitter.com">fxtwitter.com</a>と <a href="https://fixupx.com">fixupx.com</a> に変換し、クエリを削除します。</p>
+    <p><button onclick="p()">貼り付け</button></p>
+    <p><input type="text" id="i" onclick="p()" oninput="f()"></p>
+    <p>↓↓↓↓↓</p>
+    <p><input type="text" id="o" readonly></p>
+    <p><button onclick="c()">コピー</button></p>
+    <p><a href="https://github.com/nqmery/FixTwLink">ソースコード</a></p>
+    <script>
+        function p(){
+            if(navigator.clipboard){
+                navigator.clipboard.readText().then((t) => {
+                    document.getElementById('i').value = t;
+                    }).then(f());
+            }
+        }
+        function c(){
+            if(navigator.clipboard){
+                navigator.clipboard.writeText(document.getElementById('o').value);
+            }
+        }
+        function f(){
+            const i = document.getElementById('i').value;
+            if (i.includes('fxtwitter.com') || i.includes('fixupx.com') || i.includes('vxtwitter.com') || i.includes('fixvx.com')) {
+                o(i.replace(/\?.*$/g, ''));
+            }else if (i.match(/:\/\/(twitter\.com|x\.com)\/[^/]+\/status\/\d+/)) {
+                o(i
+                    .replace(/:\/\/twitter\.com/g, '://fxtwitter.com')
+                    .replace(/:\/\/x\.com/g, '://fixupx.com')
+                    .replace(/\?.*$/g, ''));
+            }else{
+                o('?');
+            }
+        }
+        function o(s){
+            document.getElementById('o').value = s;
+        }
+    </script>
+</body>
