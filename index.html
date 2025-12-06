@@ -48,13 +48,11 @@
     <p><a style="color:#6666FF" href="https://github.com/nqmery/FixTwLink">Source Code</a></p>
     
     <script>
-        //ウィンドウ再読込時にフォームをクリア
         window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('i').value = '';
         document.getElementById('o').value = '';
         });
 
-        //クリップボードから入力欄へペースト
         function p(){
             if(navigator.clipboard){
                 navigator.clipboard.readText().then((t) => {
@@ -64,14 +62,12 @@
             }
         }
 
-        //クリップボードに出力欄の文字列をコピー
         function c(){
             if(navigator.clipboard){
                 navigator.clipboard.writeText(document.getElementById('o').value);
             }
         }
 
-        //リンクの変換
         function f(){
             const i = document.getElementById('i').value;
             if (i.includes('youtube.com')){
@@ -89,7 +85,6 @@
             }
         }
 
-        //出力欄に表示
         function o(s){
             document.getElementById('o').value = s;
         }
