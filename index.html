@@ -53,28 +53,28 @@
     <p><a style="color:#6666FF" href="https://github.com/nqmery/FixTwLink">Source Code</a></p>
 
     <script>
-        const input = document.getElementById('i'), output = document.getElementById('o');
+        const i = document.getElementById('i'), e = document.getElementById('o');
 
         onload=()=>{
-            input.value = '';
-            output.value = '';
+            i.value = '';
+            e.value = '';
         };
 
         function p() {
             if (navigator.clipboard) {
                 navigator.clipboard.readText().then(t => {
-                    input.value = t;
+                    i.value = t;
                     f();
                 });
             }
         }
 
         function c() {
-            navigator.clipboard && navigator.clipboard.writeText(output.value);
+            navigator.clipboard && navigator.clipboard.writeText(e.value);
         }
 
         function f() {
-            const v = input.value;
+            const v = i.value;
             if (v.includes('youtube.com')){
                 return o(v.replace(/\&.*$/g, ''))
                 };
@@ -88,6 +88,6 @@
             }
             o('?');
         }
-        function o(s) { output.value = s; }
+        function o(s) { e.value = s; }
     </script>
 </body>
