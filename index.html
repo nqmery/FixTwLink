@@ -1,21 +1,25 @@
 <!DOCTYPE html>
+
 <head>
     <title>Fix Twitter/X Link</title>
-    <p></p>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body{
+        body {
             background-color: #111;
             color: #DDD;
+            text-align: center;
+            margin: 1em;
         }
-        button{
+
+        button {
             background-color: #114;
             color: #DDD;
             font-size: 3em;
             align-items: center;
             width: 100%;
         }
-        input{
+
+        input {
             background-color: #224;
             color: #999;
             font-size: 2em;
@@ -23,70 +27,67 @@
         }
     </style>
 </head>
-<body style="text-align:center;margin:1em;">
-    <h1>Fix Twitter/X Link</h1>   
+
+<body>
+    <h1>Fix Twitter/X Link</h1>
     <p><button onclick="p()">Paste</button></p>
-    <p><input type="text" id="i" oninput="f()"></p>
-    
+    <p><input id="i" oninput="f()"></p>
+
     <p>↓↓↓↓↓</p>
-    
-    <p><input type="text" id="o" readonly></p>
+
+    <p><input id="o" readonly></p>
     <p><button onclick="c()">Copy</button></p>
-    
+
     <p>
         TwitterとXのリンクをfxtwitter.comとfixupx.comに変換してクエリを削除します。
         <br>
         また、YouTubeのリンクから余分なクエリを削除します。
     </p>
-    
+
     <p>
         This tool converts Twitter and X links to fxtwitter.com and fixupx.com, removing any query parameters.
         <br>
         It also removes unnecessary query parameters from YouTube links.
     </p>
-    
-    <p><a style="color:#6666FF" href="https://github.com/nqmery/FixTwLink">Source Code</a></p>
-    
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('i').value = '';
-        document.getElementById('o').value = '';
-        });
 
-        function p(){
-            if(navigator.clipboard){
-                navigator.clipboard.readText().then((t) => {
-                    document.getElementById('i').value = t;
+    <p><a style="color:#6666FF" href="https://github.com/nqmery/FixTwLink">Source Code</a></p>
+
+    <script>
+        const input = document.getElementById('i'), output = document.getElementById('o');
+
+        onload=()=>{
+            input.value = '';
+            output.value = '';
+        };
+
+        function p() {
+            if (navigator.clipboard) {
+                navigator.clipboard.readText().then(t => {
+                    input.value = t;
                     f();
                 });
             }
         }
 
-        function c(){
-            if(navigator.clipboard){
-                navigator.clipboard.writeText(document.getElementById('o').value);
-            }
+        function c() {
+            navigator.clipboard && navigator.clipboard.writeText(output.value);
         }
 
-        function f(){
-            const i = document.getElementById('i').value;
-            if (i.includes('youtube.com')){
-                o(i.replace(/\&.*$/g, ''));
+        function f() {
+            const v = input.value;
+            if (v.includes('youtube.com')){
+                return o(v.replace(/\&.*$/g, ''))
+                };
+            if (v.includes('fxtwitter.com') || v.includes('fixupx.com') || v.includes('vxtwitter.com') || v.includes('fixvx.com') || v.includes('youtu.be')){
+                return o(v.replace(/\?.*$/g, ''))
+            };
+            if (v.match(/:\/\/(twitter\.com|x\.com)\/[^/]+\/status\/\d+/)) {
+                return o(v.replace(/:\/\/twitter\.com/g, '://fxtwitter.com')
+                .replace(/:\/\/x\.com/g, '://fixupx.com')
+                .replace(/\?.*$/g, ''));
             }
-            else if (i.includes('fxtwitter.com') || i.includes('fixupx.com') || i.includes('vxtwitter.com') || i.includes('fixvx.com')|| i.includes('youtu.be')) {
-                o(i.replace(/\?.*$/g, ''));
-            }else if (i.match(/:\/\/(twitter\.com|x\.com)\/[^/]+\/status\/\d+/)) {
-                o(i
-                    .replace(/:\/\/twitter\.com/g, '://fxtwitter.com')
-                    .replace(/:\/\/x\.com/g, '://fixupx.com')
-                    .replace(/\?.*$/g, ''));
-            }else{
-                o('?');
-            }
+            o('?');
         }
-
-        function o(s){
-            document.getElementById('o').value = s;
-        }
+        function o(s) { output.value = s; }
     </script>
 </body>
