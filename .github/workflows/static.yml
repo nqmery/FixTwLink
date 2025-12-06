@@ -23,16 +23,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: ls -R #debug 
-      - name: Compress assets
-        uses: dave-mcconnell/brotli-action@v1
-        with:
-          args: '-Z *.html'
-      - run: ls -R #debug
+      - name: move to publish dir
+        run: mkdir publish && mv *html publish/
+      - name: debug publish dir
+        run: ls -la publish
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          publish_dir: ./publish
         
         
