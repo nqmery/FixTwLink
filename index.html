@@ -1,45 +1,83 @@
 <!DOCTYPE html>
-<html>
 <head>
     <title>Fix Twitter/X Link</title>
+    <p></p>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body{
+            background-color: #111;
+            color: #DDD;
+        }
         button{
-            font-size: 4em;
+            background-color: #114;
+            color: #DDD;
+            font-size: 3em;
             align-items: center;
             width: 100%;
         }
         input{
+            background-color: #224;
+            color: #999;
             font-size: 2em;
             width: 100%;
         }
     </style>
 </head>
 <body style="text-align:center;margin:1em;">
-    <h1>Fix Twitter/X Link</h1>
+    <h1>Fix Twitter/X Link</h1>   
     <p><button onclick="p()">Paste</button></p>
-    <p><input type="text" id="i" onclick="p()" oninput="f()"></p>
+    <p><input type="text" id="i" oninput="f()"></p>
+    
     <p>↓↓↓↓↓</p>
+    
     <p><input type="text" id="o" readonly></p>
     <p><button onclick="c()">Copy</button></p>
-    <p><a href="https://github.com/nqmery/FixTwLink">Usage & Source</a></p>
+    
+    <p>
+        TwitterとXのリンクをfxtwitter.comとfixupx.comに変換してクエリを削除します。
+        <br>
+        また、YouTubeのリンクから余分なクエリを削除します。
+    </p>
+    
+    <p>
+        This tool converts Twitter and X links to fxtwitter.com and fixupx.com, removing any query parameters.
+        <br>
+        It also removes unnecessary query parameters from YouTube links.
+    </p>
+    
+    <p><a style="color:#6666FF" href="https://github.com/nqmery/FixTwLink">Source Code</a></p>
+    
     <script>
+        //ウィンドウ再読込時にフォームをクリア
+        window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('i').value = '';
+        document.getElementById('o').value = '';
+        });
+
+        //クリップボードから入力欄へペースト
         function p(){
             if(navigator.clipboard){
                 navigator.clipboard.readText().then((t) => {
                     document.getElementById('i').value = t;
-                    f(); // recompute output right after the paste
+                    f();
                 });
             }
         }
+
+        //クリップボードに出力欄の文字列をコピー
         function c(){
             if(navigator.clipboard){
                 navigator.clipboard.writeText(document.getElementById('o').value);
             }
         }
+
+        //リンクの変換
         function f(){
             const i = document.getElementById('i').value;
-            if (i.includes('fxtwitter.com') || i.includes('fixupx.com') || i.includes('vxtwitter.com') || i.includes('fixvx.com')|| i.includes('youtube.com')|| i.includes('youtu.be')) {
+            if (i.includes('youtube.com')){
+                o(i.replace(/\&.*$/g, ''));
+            }
+            else if (i.includes('fxtwitter.com') || i.includes('fixupx.com') || i.includes('vxtwitter.com') || i.includes('fixvx.com')|| i.includes('youtu.be')) {
                 o(i.replace(/\?.*$/g, ''));
             }else if (i.match(/:\/\/(twitter\.com|x\.com)\/[^/]+\/status\/\d+/)) {
                 o(i
@@ -50,6 +88,8 @@
                 o('?');
             }
         }
+
+        //出力欄に表示
         function o(s){
             document.getElementById('o').value = s;
         }
