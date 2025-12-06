@@ -34,12 +34,8 @@ jobs:
           rootDir: "publish"
           # Prints minification details
           verbose: true
-          # Minify CSS
-          minifyCSS: # optional, default is true
-          # Minify JS
-          minifyJS: # optional, default is true
           # Additional flags to pass to HTMLMinifier, separted by comma. See https://github.com/kangax/html-minifier#options-quick-reference. Use ! to indicate false value of a flag.
-          flags: "caseSensitive, collapseBooleanAttributes, collapseInlineTagWhitespace, collapseWhitespace, decodeEntities, html5, minifyURLs, processConditionalComments, processScripts, removeAttributeQuotes, removeComments, removeOptionalTags, removeEmptyAttributes, removeEmptyElements, removeRedundantAttributes, removeRedundantAttributes, removeScriptTypeAttributes, removeStyleLinkTypeAttributes, removeTagWhitespace, sortAttributes, sortClassName useShortDoctype"
+          flags: "caseSensitive, collapseBooleanAttributes, collapseInlineTagWhitespace, collapseWhitespace, decodeEntities, html5, minifyCSS, minifyJS, minifyURLs, processConditionalComments, processScripts, removeAttributeQuotes, removeComments, removeOptionalTags, removeEmptyAttributes, removeEmptyElements, removeRedundantAttributes, removeRedundantAttributes, removeScriptTypeAttributes, removeStyleLinkTypeAttributes, removeTagWhitespace, sortAttributes, sortClassName useShortDoctype"
           
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4.0.0
