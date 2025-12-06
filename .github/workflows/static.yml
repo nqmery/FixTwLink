@@ -23,15 +23,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: move to publish dir
-        run: mkdir publish # && mv *html publish/
+      - name: mkdir publish
+        run: mkdir publish
       - name: Minify HTML
         run: |
           wget -O minhtml -q https://github.com/wilsonzlin/minify-html/releases/download/v0.18.1/minhtml-0.18.1-x86_64-unknown-linux-gnu
           chmod +x minhtml
           mkdir -p publish
           for file in *.html; do
-            ./minhtml < "$file" > "publish/$(basename "$file")"
+            ./minhtml --minify-css --minify-doctype --minify-js < "$file" > "publish/$(basename "$file")"
           done
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4.0.0
