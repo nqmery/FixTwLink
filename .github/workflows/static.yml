@@ -24,10 +24,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - run: ls -R #debug 
-      - name: compress-action
-        uses: Charlesworth/compress-action@1.0.0
+      - name: Compress assets
+        uses: Timmy/brotli-action@v1
         with:
-          target-directory: .
+          args: '-Z *.html *.css *.js'
+      - run: ls -R #debug
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
